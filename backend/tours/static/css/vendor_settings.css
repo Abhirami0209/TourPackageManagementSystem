@@ -1,0 +1,138 @@
+/* Stylish settings.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #eef2f7;
+}
+
+.settings-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 260px;
+    background: #1f2937;
+    color: #fff;
+    padding: 20px;
+    position: fixed;
+    height: 100%;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar h2 {
+    font-size: 26px;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #10b981;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 20px 0;
+}
+
+.sidebar ul li a {
+    color: #f1f5f9;
+    text-decoration: none;
+    padding: 12px 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+}
+
+.sidebar ul li a:hover {
+    background: #374151;
+    color: #10b981;
+}
+
+.settings-content {
+    margin-left: 280px;
+    padding: 50px 40px;
+    flex: 1;
+}
+
+section {
+    background: white;
+    border-radius: 14px;
+    padding: 30px;
+    margin-bottom: 35px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s;
+}
+
+section:hover {
+    transform: translateY(-2px);
+}
+
+section h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+    border-left: 5px solid #10b981;
+    padding-left: 12px;
+    color: #1f2937;
+}
+
+form label {
+    display: block;
+    margin: 12px 0 6px;
+    font-weight: 500;
+    color: #374151;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form input[type="file"] {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background: #f9fafb;
+    transition: border 0.3s;
+}
+
+form input:focus {
+    border-color: #10b981;
+    outline: none;
+}
+
+form input[type="submit"],
+.delete-btn {
+    margin-top: 20px;
+    background: #10b981;
+    color: white;
+    padding: 12px 22px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 15px;
+    transition: background 0.3s;
+}
+
+form input[type="submit"]:hover {
+    background: #059669;
+}
+
+.delete-btn {
+    background: #ef4444;
+}
+
+.delete-btn:hover {
+    background: #dc2626;
+}
+
+input[type="checkbox"] {
+    margin-right: 10px;
+}

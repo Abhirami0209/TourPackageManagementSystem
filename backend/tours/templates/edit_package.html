@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit Package</title>
+  <link rel="stylesheet" href="{% static 'css/add_package.css' %}">
+</head>
+<body>
+  <div class="container">
+    <h2>Edit {{ pkg.title }}</h2>
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <!-- existing fields prefilled -->
+      <label>Title</label>
+      <input type="text" name="title" value="{{ pkg.title }}" required>
+
+      <label>Description</label>
+      <textarea name="description" rows="4" required>{{ pkg.description }}</textarea>
+
+      <label>Price</label>
+      <input type="number" name="price" step="0.01" value="{{ pkg.price }}" required>
+
+      <label>Capacity</label>
+      <input type="number" name="capacity" value="{{ pkg.capacity }}" required>
+
+      <label>Replace Images</label>
+      <input type="file" name="images" multiple>
+
+      <!-- pickup points -->
+      <label>Pickup Locations</label>
+      <input type="text" name="pickup_locations" value="{{ pickup_locations }}">
+
+      <label>Pickup Dates</label>
+      <input type="text" name="pickup_dates" value="{{ pickup_dates }}">
+
+      <label>Pickup Times</label>
+      <input type="text" name="pickup_times" value="{{ pickup_times }}">
+
+      <button type="submit">Update Package</button>
+    </form>
+    <a href="{% url 'vendor_dashboard' %}">← Back to Dashboard</a>
+  </div>
+</body>
+</html>

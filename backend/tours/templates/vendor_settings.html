@@ -1,0 +1,77 @@
+<!-- settings.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor Settings</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/vendor_settings.css' %}">
+</head>
+<body>
+    <div class="settings-wrapper">
+        <div class="sidebar">
+            <h2>Settings</h2>
+            <ul>
+                <li><a href="#profile">Profile</a></li>
+                <li><a href="#security">Security</a></li>
+                <li><a href="#notifications">Notifications</a></li>
+                <li><a href="#delete">Delete Account</a></li>
+            </ul>
+        </div>
+
+        <div class="settings-content">
+            <section id="profile">
+                <h2>Profile Settings</h2>
+                <form method="POST">
+                    {% csrf_token %}
+                    <label>Company Name:</label>
+                    <input type="text" name="company_name" value="{{ vendor.company_name }}"><br>
+
+                    <label>Email:</label>
+                    <input type="email" name="email" value="{{ vendor.contact_email }}"><br>
+
+                    <label>Phone:</label>
+                    <input type="text" name="phone" value="{{ vendor.phone }}"><br>
+
+                    <label>Business Logo:</label>
+                    <input type="file" name="logo"><br>
+
+                    <input type="submit" value="Save Changes">
+                </form>
+            </section>
+
+            <section id="security">
+                <h2>Security</h2>
+                <form method="POST">
+                    {% csrf_token %}
+                    <label>Current Password:</label>
+                    <input type="password" name="current_password"><br>
+
+                    <label>New Password:</label>
+                    <input type="password" name="new_password"><br>
+
+                    <label>Confirm New Password:</label>
+                    <input type="password" name="confirm_password"><br>
+
+                    <input type="submit" value="Update Password">
+                </form>
+            </section>
+
+            <section id="notifications">
+                <h2>Notification Preferences</h2>
+                <label><input type="checkbox" checked> Receive Email Alerts</label><br>
+                <label><input type="checkbox"> Show Package Status Updates</label><br>
+            </section>
+
+            <section id="delete">
+                <h2>Delete Account</h2>
+                <p>Once you delete your account, there is no going back. Please be certain.</p>
+                <button class="delete-btn">Delete My Account</button>
+            </section>
+        </div>
+    </div>
+</body>
+</html>

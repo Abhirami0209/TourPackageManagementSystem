@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vendor Dashboard</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="{% static 'css/vendor_dashboard.css' %}">
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ── TOP NAV BAR ──────────────────────────────────────────── -->
+  <header class="top-nav">
+    <div class="logo">
+      <h2>{{ vendor.company_name }}</h2>
+    </div>
+    <nav>
+      <ul>
+        <li>
+          <a href="{% url 'vendor_profile' %}">
+            <span class="material-icons">person</span> Profile
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'vendor_settings' %}">
+            <span class="material-icons">settings</span> Settings
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'view_bookings' %}">
+            <span class="material-icons">event</span> Bookings
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'add_package' %}">
+            <span class="material-icons">add_circle</span> Add Package
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'logout' %}">
+            <span class="material-icons">logout</span> Logout
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ── MAIN CONTENT ─────────────────────────────────────────── -->
+  <main class="main-content">
+    <h1>Welcome, {{ vendor.user.first_name }}!</h1>
+
+    <!-- Revenue Summary Section -->
+    <section class="revenue-summary">
+      <h2>Revenue Summary</h2>
+      <div class="revenue-cards">
+        <div class="revenue-card">
+          <span class="material-icons">attach_money</span>
+          <h3>Total Revenue</h3>
+          <p>₹{{ total_revenue }}</p>
+        </div>
+        <div class="revenue-card">
+          <span class="material-icons">shopping_cart</span>
+          <h3>Total Bookings</h3>
+          <p>{{ total_bookings }}</p>
+        </div>
+        <div class="revenue-card">
+          <span class="material-icons">bar_chart</span>
+          <h3>Avg. Earnings/Package</h3>
+          <p>₹{{ avg_earnings }}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Current Packages -->
+    <section>
+      <h2>Current Packages</h2>
+      <div class="booking-container">
+        {% for pkg in current_packages %}
+          <div class="package-card">
+            <h3>{{ pkg.title }}</h3>
+            <p><strong>Price:</strong> ₹{{ pkg.price }}</p>
+            <p><strong>Slots:</strong> {{ pkg.slots_remaining }}/{{ pkg.capacity }}</p>
+            <a href="{% url 'view_package_details' pkg.id %}" class="view-details-btn">
+              View Details
+            </a>
+          </div>
+        {% empty %}
+          <p>No live packages.</p>
+        {% endfor %}
+      </div>
+    </section>
+
+    
+    <section>
+      <h2>Waiting Packages</h2>
+      <div class="booking-container">
+        {% for pkg in previous_packages %}
+          <div class="package-card previous">
+            <h3>{{ pkg.title }} ({{ pkg.get_status_display }})</h3>
+            <p><strong>Price:</strong> ₹{{ pkg.price }}</p>
+          </div>
+        {% empty %}
+          <p>None yet.</p>
+        {% endfor %}
+      </div>
+    </section>
+  </main>
+
+</body>
+</html>

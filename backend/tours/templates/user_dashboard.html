@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/user_dashboard.css' %}">
+</head>
+<body>
+  <div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h2>Welcome, {{ request.user.first_name }}</h2>
+      </div>
+      <nav class="sidebar-nav">
+        <ul>
+          <li><a href="{% url 'user_profile' %}">Profile</a></li>
+          <li><a href="{% url 'user_settings' %}">Settings</a></li>
+          <li><a href="{% url 'user_bookings' %}">My Bookings</a></li>
+          <li><a href="{% url 'user_dashboard' %}">Available Tours</a></li>
+          <li><a href="{% url 'login' %}">Logout</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main content -->
+    <main class="main-content">
+      <h1>Available Tours</h1>
+      <div class="package-grid">
+        {% for pkg in packages %}
+          <div class="package-card">
+            {% if pkg.images.all %}
+              {% with first_image=pkg.images.all.0 %}
+                <img src="{{ first_image.image.url }}" alt="{{ pkg.title }}">
+              {% endwith %}
+            {% else %}
+              <img src="{% static 'images/default_image.jpeg' %}" alt="No image available">
+            {% endif %}
+            <h3>{{ pkg.title }}</h3>
+            <p class="price">₹{{ pkg.price }}</p>
+            <p><strong>Spots left:</strong> {{ pkg.slots_remaining }}</p>
+            <a class="btn" href="{% url 'view_package_details' pkg.id %}">Book / Details</a>
+          </div>
+        {% empty %}
+          <p>No tours available.</p>
+        {% endfor %}
+      </div>
+    </main>
+  </div>
+</body>
+</html>

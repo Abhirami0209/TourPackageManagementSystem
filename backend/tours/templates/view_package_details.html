@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ package.title }}</title>
+  <link rel="stylesheet" href="{% static 'css/view_package_details.css' %}">
+</head>
+<body>
+  <div class="container">
+    <h1>{{ package.title }}</h1>
+
+    {% if package.images.all %}
+      {% with first_image=package.images.all.0 %}
+        <img src="{{ first_image.image.url }}" alt="{{ package.title }}" class="package-image">
+      {% endwith %}
+    {% else %}
+      <img src="{% static 'images/munnar1.jpg' %}" alt="No image available" class="package-image">
+    {% endif %}
+
+    <p><strong>Description:</strong><br>
+      <span class="description-text">{{ package.description|linebreaksbr }}</span>
+    </p>
+
+    <p><strong>Price:</strong> ₹{{ package.price }}</p>
+    <p><strong>Capacity:</strong> {{ package.capacity }} people</p>
+
+    <hr>
+
+    <h3>Vendor Details</h3>
+    <p><strong>Name:</strong> {{ vendor.user.first_name }}</p>
+    <p><strong>Company:</strong> {{ vendor.company_name }}</p>
+    <p><strong>Location:</strong> {{ vendor.contact_info }}</p>
+    <p><strong>Email:</strong> {{ vendor.contact_email }}</p>
+    <p><strong>Phone:</strong> {{ vendor.phone }}</p>
+
+    {% if user.profile.role == 'user' %}
+      <hr>
+      <h3>Book this Package</h3>
+      <form method="POST">
+        {% csrf_token %}
+        <label for="number_of_people"><strong>Number of People:</strong></label>
+        <input type="number" id="number_of_people" name="number_of_people" value="1"
+               min="1" max="{{ package.capacity }}" required>
+        <button type="submit" class="button">Book Now</button>
+      </form>
+    {% endif %}
+
+    {% if user.profile.role == 'vendor' %}
+      <hr>
+      <h3>Bookings for this Package</h3>
+      <ul>
+        {% for booking in bookings %}
+          <li>{{ booking.user.username }} — {{ booking.number_of_people }} people ({{ booking.status }})</li>
+        {% empty %}
+          <li>No bookings yet.</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+</body>
+</html>

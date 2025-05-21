@@ -1,0 +1,175 @@
+/* Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f6f8;
+  color: #333;
+}
+
+/* ── TOP NAVIGATION BAR ────────────────────────────────────────────────── */
+.top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1e3a8a; /* blue */
+  color: white;
+  padding: 12px 30px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.top-nav .logo h2 {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.top-nav nav ul {
+  list-style: none;
+  display: flex;
+  gap: 24px;
+}
+
+.top-nav nav ul li a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.top-nav nav ul li a:hover {
+  color: #cbd5e1;
+}
+
+.material-icons {
+  font-size: 20px;
+}
+
+/* ── MAIN CONTENT AREA ─────────────────────────────────────────────────── */
+.main-content {
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+.main-content h1 {
+  margin-bottom: 16px;
+  font-size: 26px;
+}
+
+.main-content section h2 {
+  margin: 24px 0 12px;
+  font-size: 20px;
+  color: #1e3a8a;
+}
+
+/* ── REVENUE SUMMARY ───────────────────────────────────────────────────── */
+.revenue-summary {
+  margin: 2rem 0;
+}
+
+.revenue-cards {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.revenue-card {
+  background-color: #f0f4f8;
+  padding: 1rem;
+  flex: 1;
+  min-width: 220px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.revenue-card span.material-icons {
+  font-size: 36px;
+  color: #0077cc;
+}
+
+.revenue-card h3 {
+  margin: 0.5rem 0;
+  font-size: 1.2rem;
+}
+
+.revenue-card p {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #333;
+}
+
+/* ── PACKAGE GRID ─────────────────────────────────────────────────────── */
+.booking-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.package-card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.package-card h3 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #1a237e;
+  margin-bottom: 10px;
+}
+
+
+
+.package-card p {
+  margin-bottom: 10px;
+}
+
+
+/* View Details button */
+.view-details-btn {
+  display: inline-block;
+  margin: 12px 16px 16px;
+  padding: 8px 12px;
+  background-color: #1e3a8a;
+  color: white;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.view-details-btn:hover {
+  background-color: #3458a1;
+}
+
+/* ── RESPONSIVE ───────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .top-nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .top-nav nav ul {
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 8px;
+  }
+  .booking-container {
+    grid-template-columns: 1fr;
+  }
+}

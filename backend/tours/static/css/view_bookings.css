@@ -1,0 +1,161 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fb;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 95%;
+  margin: 40px auto;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 30px;
+}
+
+.alert {
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.alert.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 auto;
+  font-size: 16px;
+  min-width: 800px;
+  background-color: #ffffff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+.styled-table thead tr {
+  background-color: #3498db;
+  color: #ffffff;
+  text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+  padding: 14px 18px;
+  border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr {
+  border-bottom: 1px solid #eeeeee;
+  transition: background 0.3s ease;
+}
+
+.styled-table tbody tr:hover {
+  background-color: #f1f9ff;
+}
+
+.status {
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.status.pending {
+  color: #e67e22;  /* Orange */
+}
+
+.status.confirmed {
+  color: #27ae60;  /* Green */
+}
+
+.status.cancelled {
+  color: #c0392b;  /* Red */
+}
+
+
+.no-bookings {
+  text-align: center;
+  color: #999;
+  font-size: 18px;
+  margin-top: 40px;
+}
+.filter-navbar {
+  background-color: #0e3e5e;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.filter-form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  align-items: center;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+}
+
+.filter-group label {
+  font-weight: 500;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.filter-form select,
+.filter-form input[type="date"] {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: none;
+  font-size: 14px;
+  min-width: 160px;
+  background-color: #fff;
+  color: #333;
+}
+
+.filter-btn {
+  background-color: #2e31cc;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.filter-btn:hover {
+  background-color: #27ae60;
+}
+
+.clear-btn {
+  font-size: 14px;
+  color: #ffffff;
+  text-decoration: underline;
+  margin-left: 10px;
+}
+
+.clear-btn:hover {
+  color: #d1d1d1;
+}

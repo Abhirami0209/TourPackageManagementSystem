@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>All Bookings</title>
+  <link rel="stylesheet" href="{% static 'css/view_bookings.css' %}">
+</head>
+<body>
+  <div class="container">
+    <h1>All Bookings for Your Packages</h1>
+
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert {{ message.tags }}">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+
+    <<div class="filter-navbar">
+  <form method="GET" class="filter-form">
+    <div class="filter-group">
+      <label for="status">Status:</label>
+      <select name="status" id="status">
+        <option value="all" {% if status_filter == 'all' %}selected{% endif %}>All</option>
+        <option value="pending" {% if status_filter == 'pending' %}selected{% endif %}>Pending</option>
+        <option value="confirmed" {% if status_filter == 'confirmed' %}selected{% endif %}>Confirmed</option>
+        <option value="cancelled" {% if status_filter == 'cancelled' %}selected{% endif %}>Cancelled</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label for="booked_at">Date:</label>
+      <input type="date" name="booked_at" id="booked_at" value="{{ date_filter }}">
+    </div>
+
+    <button type="submit" class="filter-btn">Filter</button>
+    <a href="{% url 'view_bookings' %}" class="clear-btn">Clear</a>
+  </form>
+</div>
+
+    {% if bookings %}
+      <div class="table-wrapper">
+        <table class="styled-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Package</th>
+              <th>Booked By</th>
+              <th>Email</th>
+              <th>No. of People</th>
+              <th>Status</th>
+              <th>Booked At</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for b in bookings %}
+              <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ b.package.title }}</td>
+                <td>{{ b.user.get_full_name|default:b.user.username }}</td>
+                <td>{{ b.user.email }}</td>
+                <td>{{ b.number_of_people }}</td>
+                <td class="status {{ b.status }}">{{ b.status|capfirst }}</td>
+                <td>{{ b.booking_date|date:"M j, Y, g:i a" }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% else %}
+      <p class="no-bookings">No bookings yet for your packages.</p>
+    {% endif %}
+  </div>
+</body>
+</html>

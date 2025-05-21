@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Bookings</title>
+  <link rel="stylesheet" href="{% static 'css/user_bookings.css' %}">
+</head>
+<body>
+  <div class="booking-container">
+    <h1>My Bookings</h1>
+
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert {{ message.tags }}">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+
+    {% if bookings %}
+      <div class="booking-list">
+        {% for booking in bookings %}
+          <div class="booking-card">
+            <div class="booking-image">
+              {% if booking.package.images.first %}
+                <img src="{{ booking.package.images.first.image.url }}" alt="Package Image">
+              {% else %}
+                <img src="{% static 'images/default_image.jpeg' %}" alt="Default Image">
+              {% endif %}
+            </div>
+            <div class="booking-details">
+              <h2>{{ booking.package.title }}</h2>
+              <p><strong>Description:</strong> {{ booking.package.description }}</p>
+              <p><strong>Vendor:</strong> {{ booking.package.vendor.company_name }}</p>
+              <p><strong>People:</strong> {{ booking.number_of_people }}</p>
+              <p><strong>Status:</strong> <span class="status {{ booking.status }}">{{ booking.status|capfirst }}</span></p>
+              <p><strong>Price:</strong> ₹{{ booking.package.price }}</p>
+              <p><strong>Booked On:</strong> {{ booking.booking_date|date:"M j, Y, g:i a" }}</p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="no-bookings">You haven't booked any packages yet.</p>
+    {% endif %}
+  </div>
+</body>
+</html>

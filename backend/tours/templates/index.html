@@ -1,0 +1,59 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TourMate</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to TourMate.</h1>
+        <p>Your go-to Tour package booking platform.</p>
+    </header>
+
+    <div class="main-content">
+
+        <div class="slideshow-container">
+            <div class="slide fade">
+                <img class="slides" src="{% static 'images/slide1.jpg' %}" />
+            </div>
+            <div class="slide fade">
+                <img class="slides" src="{% static 'images/slide2.jpg' %}" />
+            </div>
+            <div class="slide fade">
+                <img class="slides" src="{% static 'images/slide3.jpg' %}" />
+            </div>
+            <div class="slide fade">
+                <img class="slides" src="{% static 'images/slide4.jpg' %}" />
+            </div>
+        </div>
+        
+        <div class="auth-section">
+            <div class="auth-header">
+                <img src="{% static 'images/travelicon.png' %}" alt="Travel Icon" class="auth-icon">
+                <h2><strong>Start Your Journey</strong></h2>
+                <p class="intro-text">Whether you're booking or hosting tours,<br>we're here to help you explore the world.</p>
+            </div>
+        
+            <div class="dropdown">
+                <button class="button" id="registerBtn">Register</button>
+                <div class="dropdown-content" id="dropdownMenu">
+                    <a href="{% url 'register_user' %}">Register as User</a>
+                    <a href="{% url 'register_vendor' %}">Register as Vendor</a>
+                </div>
+            </div>            
+        
+            <br><br>
+            <button class="button" onclick="location.href='/login/'">Login</button>
+        </div>
+                      
+    
+    </div>
+    
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

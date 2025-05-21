@@ -1,0 +1,96 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Registration</title>
+  <link rel="stylesheet" href="{% static 'css/register_user.css' %}" />
+</head>
+<body>
+  <div class="container">
+    <div class="left-panel">
+      <img src="{% static 'images/user_bg.jpg' %}" alt="Tour Background" />
+    </div>
+
+    <div class="right-panel">
+      <div class="form-container">
+        <h2>Create Your Account</h2>
+
+        <!-- Message Display Block -->
+      {% if messages %}
+       <div class="message-container">
+         {% for message in messages %}
+          {% if message.tags == "success" or message.tags == "error" %}
+            <p class="message {{ message.tags }}">{{ message }}</p>
+          {% endif %}
+         {% endfor %}
+       </div>
+      {% endif %}
+
+
+        <form action="{% url 'register_user' %}" method="POST" onsubmit="return validateAge()">
+          {% csrf_token %}
+
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" required />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email ID</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+
+          <div class="form-group">
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob" name="dob" required />
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" required />
+          </div>
+
+          <div class="form-group">
+            <label for="address">Address</label>
+            <textarea id="address" name="address" rows="3" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Create Password</label>
+            <input type="password" id="password" name="password" required />
+          </div>
+
+          <div class="button-container">
+            <button type="submit" class="register-btn">Register</button>
+          </div>
+
+          <p class="login-link">
+            Already have an account? <a href="{% url 'login' %}">Login</a>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function validateAge() {
+      const dob = new Date(document.getElementById('dob').value);
+      const today = new Date();
+      let age = today.getFullYear() - dob.getFullYear();
+      const m = today.getMonth() - dob.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
+        age--;
+      }
+
+      if (age < 18) {
+        alert("You must be at least 18 years old to register.");
+        return false;
+      }
+      return true;
+    }
+  </script>
+</body>
+</html>

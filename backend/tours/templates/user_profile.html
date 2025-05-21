@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Profile</title>
+  <link rel="stylesheet" href="{% static 'css/user_profile.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <h2>Welcome</h2>
+      </div>
+      <nav class="sidebar-nav">
+        <ul>
+          <li><a href="{% url 'user_dashboard' %}" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
+          <li><a href="{% url 'user_profile' %}"><i class="fas fa-user"></i> Profile</a></li>
+          <li><a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <div class="profile-card">
+        <div class="profile-header">
+          <h2>{{ user.first_name }} {{ user.last_name }}</h2>
+          <span>@{{ user.username }}</span>
+        </div>
+
+        <div class="profile-info">
+          <div class="info-item"><i class="fas fa-envelope"></i> {{ user.email }}</div>
+          <div class="info-item"><i class="fas fa-calendar-alt"></i> Joined: {{ user.date_joined|date:"F j, Y" }}</div>
+          <div class="info-item"><i class="fas fa-clock"></i> Last Login: {{ user.last_login|date:"F j, Y, g:i a" }}</div>
+        </div>
+
+        <div style="text-align: center;">
+          <a href="{% url 'user_settings' %}" class="btn">Edit Profile</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

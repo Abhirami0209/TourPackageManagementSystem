@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Tour Package</title>
+</head>
+<body>
+    <h1>Book Package: {{ package.title }}</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="number_of_people">Number of People:</label>
+        <input type="number" name="number_of_people" min="1" max="{{ pkg.capacity }}" value="1" required>
+        <button type="submit">Confirm Booking</button>
+    </form>
+</body>
+</html>

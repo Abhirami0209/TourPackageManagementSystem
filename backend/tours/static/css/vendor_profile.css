@@ -1,0 +1,103 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #667eea, #e9e5ec);
+    margin: 0;
+    padding: 60px 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+}
+
+h1 {
+    font-weight: 700;
+    font-size: 36px;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+form {
+    background: #ffffff;
+    width: 550px;
+    border-radius: 20px;
+    padding: 50px 40px 40px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+    position: relative;
+    box-sizing: border-box;
+    color: #333;
+    margin-bottom: 40px;
+}
+
+form::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90px;
+    height: 90px;
+    background: url('https://cdn-icons-png.flaticon.com/512/747/747376.png') no-repeat center/cover;
+    border-radius: 50%;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    background-color: white;
+    border: 3px solid #fff;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 15px;
+    color: #555;
+}
+
+input[type="text"],
+input[type="email"] {
+    width: 100%;
+    padding: 13px 15px;
+    margin-bottom: 25px;
+    border: 1.5px solid #ccc;
+    border-radius: 12px;
+    font-size: 15px;
+    transition: 0.3s;
+    background-color: #f9f9f9;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus {
+    border-color: #764ba2;
+    box-shadow: 0 0 10px rgba(118, 75, 162, 0.3);
+    outline: none;
+    background-color: #fff;
+}
+
+input[type="submit"] {
+    width: 100%;
+    padding: 14px;
+    background: #764ba2;
+    border: none;
+    border-radius: 15px;
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(118, 75, 162, 0.4);
+}
+
+input[type="submit"]:hover {
+    background: #5e3a93;
+    box-shadow: 0 12px 25px rgba(90, 52, 129, 0.5);
+}
+
+@media (max-width: 600px) {
+    form {
+        width: 90%;
+        padding: 40px 25px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+}
